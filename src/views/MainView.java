@@ -2,7 +2,7 @@ package views;
 
 import java.awt.*;
 // import java.awt.event.ActionEvent;
-// import java.awt.event.ActionListener;
+import java.awt.event.ActionListener;
 // import java.time.LocalDate;
 // import java.time.ZoneId;
 // import java.util.List;
@@ -21,7 +21,7 @@ public class MainView extends JFrame{
     private JPanel pnlGraph;
     private JPanel pnlStats;
 
-    JButton btnGraph, btnStats;
+    private JButton btnGraph, btnStats;
 
     public MainView() {
         setTitle("Temperaturas por ciudad");
@@ -80,10 +80,6 @@ public class MainView extends JFrame{
 
     // // getters
 
-    // public int getIndiceMonedaSeleccionada() {
-    //     return -1;
-    // }
-
     // public LocalDate getFechaDesde() {
     //     return dccFrom.getSelectedDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     // }
@@ -93,17 +89,13 @@ public class MainView extends JFrame{
     // }
 
     // // setters
-    // public void setGraficarClick(ActionListener evento) {
-    //     btnGraph.addActionListener(evento);
-    // }
+    public void setGraphClick(ActionListener evento) {
+        btnGraph.addActionListener(evento);
+    }
 
-    // public void setCalcularEstadisticasClick(ActionListener evento) {
-    //     btnStats.addActionListener(evento);
-    // }
-
-    // public void setMonedas(List<String> monedas) {
-    //     // Currency selection is not part of this view.
-    // }
+    public void setStatsClick(ActionListener evento) {
+        btnStats.addActionListener(evento);
+    }
 
     // // metodos publicos
     // public void activarPestaña(int posicion) {
