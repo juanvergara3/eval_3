@@ -3,10 +3,11 @@ package views;
 import java.awt.*;
 // import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-// import java.time.LocalDate;
 // import java.time.ZoneId;
 // import java.util.List;
 // import java.util.Map;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 import javax.swing.*;
 
@@ -79,14 +80,17 @@ public class MainView extends JFrame{
     }
 
     // // getters
+    public LocalDate getDateFrom() {
+        return dccFrom.getSelectedDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
 
-    // public LocalDate getFechaDesde() {
-    //     return dccFrom.getSelectedDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-    // }
+    public LocalDate getDateTo() {
+        return dccTo.getSelectedDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
 
-    // public LocalDate getFechaHasta() {
-    //     return dccTo.getSelectedDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-    // }
+    public LocalDate getDatePoint() {
+        return ddcPoint.getSelectedDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
 
     // // setters
     public void setGraphClick(ActionListener evento) {
@@ -98,12 +102,6 @@ public class MainView extends JFrame{
     }
 
     // // metodos publicos
-    // public void activarPestaña(int posicion) {
-    //     if (posicion >= 0 && posicion < tpTabs.getTabCount()) {
-    //         tpTabs.setSelectedIndex(posicion);
-    //     }
-    // }
-
     // public void graficar(ChartPanel pnlGraficador) {
     //     pnlGraph.removeAll();
     //     pnlGraph.setLayout(new BorderLayout());
