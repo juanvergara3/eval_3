@@ -13,7 +13,7 @@ import javax.swing.*;
 
 
 import datechooser.beans.DateChooserCombo;
-// import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartPanel;
 
 public class MainView extends JFrame{
 
@@ -102,12 +102,12 @@ public class MainView extends JFrame{
     }
 
     // // metodos publicos
-    // public void graficar(ChartPanel pnlGraficador) {
-    //     pnlGraph.removeAll();
-    //     pnlGraph.setLayout(new BorderLayout());
-    //     pnlGraph.add(pnlGraficador, BorderLayout.CENTER);
-    //     pnlGraph.revalidate();
-    // }
+    public void graph(ChartPanel pnlGrapher) {
+        pnlGraph.removeAll();
+        pnlGraph.setLayout(new BorderLayout());
+        pnlGraph.add(pnlGrapher, BorderLayout.CENTER);
+        pnlGraph.revalidate();
+    }
 
     // public void mostrarEstadisticas(Map<String, Double> estadisticas) {
     //     pnlStats.removeAll();
