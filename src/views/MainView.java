@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 // import java.util.Map;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Map;
 
 import javax.swing.*;
 
@@ -119,21 +120,30 @@ public class MainView extends JFrame{
         pnlGraph.setLayout(new BorderLayout());
         pnlGraph.add(pnlGrapher, BorderLayout.CENTER);
         pnlGraph.revalidate();
+        pnlGraph.repaint();
     }
 
-    // public void mostrarEstadisticas(Map<String, Double> estadisticas) {
-    //     pnlStats.removeAll();
-    //     pnlStats.setLayout(new GridBagLayout());
-    //     var gbc = new GridBagConstraints();
-    //     gbc.gridy = 0;
-    //     estadisticas.forEach((clave, valor) -> {
-    //         gbc.gridx = 0;
-    //         pnlStats.add(new JLabel(clave), gbc);
-    //         gbc.gridx = 1;
-    //         pnlStats.add(new JLabel(String.format("%.2f", valor)), gbc);
-    //         gbc.gridy++;
-    //     });
+    public void showStats(Map<String, String> stats) {
+        pnlStats.removeAll();
+        pnlStats.setLayout(new GridBagLayout());
+        var gbc = new GridBagConstraints();
+        gbc.gridy = 0;
 
-    //     pnlStats.revalidate();
-    // }
+        stats.forEach((key, value) -> {
+            gbc.gridx = 0;
+            pnlStats.add(new JLabel(key), gbc);
+            gbc.gridx = 1;
+            pnlStats.add(new JLabel(value), gbc);
+            gbc.gridy++;
+        });
+
+        pnlStats.revalidate();
+
+        // se pone esta instrucción porque por algún motivo sin ella el panel no se limpia correctamente y los labels se superponen unos sobre otros
+        pnlStats.repaint();
+    }
+
+    public void showError(String message) {
+        JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
 }

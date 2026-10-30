@@ -55,4 +55,26 @@ public class MainService {
             Collectors.averagingDouble(CityTemperature::getTemperature)
         ));
     }
+
+
+    public static Map<String, String> getStatsData(List<CityTemperature> data) {
+        return Map.of(
+            "Ciudad más calurosa:", getHottestCity(data),
+            "Ciudad menos calurosa: ", getColdestCity(data)
+        );
+    }
+
+    private static String getHottestCity(List<CityTemperature> data) {
+        return data.stream()
+        .max((t1, t2) -> Double.compare(t1.getTemperature(), t2.getTemperature()))
+        .map(cityTemperature -> cityTemperature.getCity() + "(" + cityTemperature.getTemperature() + "°C)")
+        .orElse("No hay datos para la fecha seleccionada");
+    }
+
+    private static String getColdestCity(List<CityTemperature> data) {
+        return data.stream()
+        .min((t1, t2) -> Double.compare(t1.getTemperature(), t2.getTemperature()))
+        .map(cityTemperature -> cityTemperature.getCity() + "(" + cityTemperature.getTemperature() + "°C)")
+        .orElse("No hay datos para la fecha seleccionada");
+    }
 }

@@ -35,6 +35,11 @@ public class MainController {
         LocalDate fromDate = this.view.getDateFrom();
         LocalDate toDate = this.view.getDateTo();
 
+        if (fromDate == null || toDate == null) {
+            view.showError("Por favor seleccione ambas fechas para graficar");
+            return;
+        }
+
         var filteredData = MainService.filter(cityTemperatures, fromDate, toDate);
         var graphData = MainService.getGraphData(filteredData);
 
@@ -58,8 +63,16 @@ public class MainController {
 
     private void calculateStats() {
         LocalDate pointDate = this.view.getDatePoint();
-        //TODO implementar
 
-        // view.showStats(null);
+        if (pointDate == null) {
+            view.showError("Por favor seleccione una fecha para calcular las estadísticas");
+            return;
+        }
+
+        // se filtra con la misma fecha para obtener la temperatura de cada ciudad en ese día. Se podría hacer un método específico pero esto reutiliza código y funciona igual de bien
+        var filteredData = MainService.filter(cityTemperatures, pointDate, pointDate);
+        var stats = MainService.getStatsData(filteredData);
+
+        view.showStats(stats);
     }
 }
