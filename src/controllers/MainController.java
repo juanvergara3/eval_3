@@ -38,14 +38,18 @@ public class MainController {
         var filteredData = MainService.filter(cityTemperatures, fromDate, toDate);
         var graphData = MainService.getGraphData(filteredData);
 
-        // TODO investigar como hacer un gráfico de barras (generar dataset)
+        var graphDataset = new org.jfree.data.category.DefaultCategoryDataset();
+        // entry es de tipo <key, value>, siendo el key el nombre de la ciudad y el value la temperatura promedio
+        for (var entry : graphData.entrySet()) {
+            graphDataset.addValue(entry.getValue(), "Temperatura promedio" , entry.getKey());
+        }
 
         JFreeChart grapher = ChartFactory.createBarChart(
-                    "Gráfica temperatura promedio por ciudad",
-                    "Ciudades",
-                    "Temperatura promedio",
-                    null
-            );
+            "Gráfica temperatura promedio por ciudad",
+            "Ciudades",
+            "Temperatura promedio",
+            graphDataset
+        );
 
         ChartPanel pnlGrapher = new ChartPanel(grapher);
         pnlGrapher.setPreferredSize(new Dimension(500, 270));
