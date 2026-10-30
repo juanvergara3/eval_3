@@ -81,15 +81,27 @@ public class MainView extends JFrame{
 
     // // getters
     public LocalDate getDateFrom() {
-        return dccFrom.getSelectedDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        try {
+            return dccFrom.getSelectedDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } catch (NullPointerException e) {
+            return null;
+        }
     }
 
     public LocalDate getDateTo() {
-        return dccTo.getSelectedDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        try {
+            return dccTo.getSelectedDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } catch (NullPointerException e) {
+            return null;
+        }
     }
 
     public LocalDate getDatePoint() {
-        return ddcPoint.getSelectedDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        try {
+            return ddcPoint.getSelectedDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } catch (NullPointerException e) {
+            return null;
+        }
     }
 
     // // setters
