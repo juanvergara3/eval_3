@@ -7,6 +7,7 @@ import java.util.List;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import models.CityTemperature;
 import services.MainService;
@@ -43,7 +44,7 @@ public class MainController {
         var filteredData = MainService.filter(cityTemperatures, fromDate, toDate);
         var graphData = MainService.getGraphData(filteredData);
 
-        var graphDataset = new org.jfree.data.category.DefaultCategoryDataset();
+        var graphDataset = new DefaultCategoryDataset();
         // entry es de tipo <key, value>, siendo el key el nombre de la ciudad y el value la temperatura promedio
         for (var entry : graphData.entrySet()) {
             graphDataset.addValue(entry.getValue(), "Temperatura promedio" , entry.getKey());
@@ -69,7 +70,7 @@ public class MainController {
             return;
         }
 
-        // se filtra con la misma fecha para obtener la temperatura de cada ciudad en ese día. Se podría hacer un método específico pero esto reutiliza código y funciona igual de bien
+        // se filtra con la misma fecha para obtener la temperatura de cada ciudad en ese día puntual. Se podría hacer un método específico pero usar este mismo método reutiliza código y funciona igual de bien
         var filteredData = MainService.filter(cityTemperatures, pointDate, pointDate);
         var stats = MainService.getStatsData(filteredData);
 

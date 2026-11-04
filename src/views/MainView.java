@@ -1,11 +1,7 @@
 package views;
 
 import java.awt.*;
-// import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-// import java.time.ZoneId;
-// import java.util.List;
-// import java.util.Map;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Map;
@@ -44,7 +40,7 @@ public class MainView extends JFrame{
         btnGraph = new JButton();
         btnGraph.setIcon(new ImageIcon(getClass().getResource("/icons/Graph.png")));
         btnGraph.setMargin(new Insets(0, 0, 0, 0));
-        btnGraph.setToolTipText("Grafica promedio de temperatura por ciudad");
+        btnGraph.setToolTipText("Grafica de temperatura promedio por ciudad");
         pnlGraphControls.add(btnGraph);
 
         // panel con la grafica
@@ -138,8 +134,6 @@ public class MainView extends JFrame{
         });
 
         pnlStats.revalidate();
-
-        // se pone esta instrucción porque por algún motivo sin ella el panel no se limpia correctamente y los labels se superponen unos sobre otros
         pnlStats.repaint();
     }
 
